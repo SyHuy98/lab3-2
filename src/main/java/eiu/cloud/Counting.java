@@ -38,14 +38,14 @@ public class Counting  extends HttpServlet  {
                     DB_USER,
                     DB_PASSWORD
             );
-            String query = "SELECT code,name  FROM course";
+            String query = "SELECT code  FROM course";
             PreparedStatement st = mySQLClient.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             String report = "";
             if (rs.next()) {
                 // Retrieve data from the result set
                 // System.out.println(rs.getString("count"));
-                report = rs.getString("code"+ " name");
+                report = rs.getString("code");
             }
             resp.setContentType("text/plain");
             resp.setStatus(200);
