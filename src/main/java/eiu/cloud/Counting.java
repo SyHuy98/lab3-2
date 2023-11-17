@@ -17,20 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(urlPatterns = { "/count" })
-public class Counting  extends HttpServlet  {
-    //  private final static String JDBC_URL = "jdbc:mysql://ec2-13-229-201-166.ap-southeast-1.compute.amazonaws.com:3306/" + "lab3-2";
-    //private final static String DB_USER = "admin";
-    //private final static String DB_PASSWORD = "Syhuy@98";
-    private final static String JDBC_URL = "jdbc:mysql://localhost:3306/" + "cloudcomputing";
-    private final static String DB_USER = "root";
-    private final static String DB_PASSWORD = "Syhuy@98";
+public class Counting extends HttpServlet {
+    private final static String JDBC_URL = "jdbc:mysql://cloudcomp.cxevftgvdyfx.ap-southeast-1.rds.amazonaws.com:3306/cloudcomp1011";
+    private final static String DB_USER = "admin";
+    private final static String DB_PASSWORD = "Syhuy1998";
     private static final long serialVersionUID = 1L;
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(resp.getOutputStream(), "UTF-8")
-        );
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream(), "UTF-8"));
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection mySQLClient = DriverManager.getConnection(
@@ -38,22 +34,27 @@ public class Counting  extends HttpServlet  {
                     DB_USER,
                     DB_PASSWORD
             );
-            String query = "SELECT code  FROM course";
+
+            String query = "SELECT code, name FROM course"; // Update the query to select both columns
             PreparedStatement st = mySQLClient.prepareStatement(query);
             ResultSet rs = st.executeQuery();
-            String report = "";
-            if (rs.next()) {
-                // Retrieve data from the result set
-                // System.out.println(rs.getString("count"));
-                report = rs.getString("code");
+
+            StringBuilder report = new StringBuilder();
+            while (rs.next()) {
+                // Retrieve data from the result set for each row
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+
+                // Append the code and name to the response
+                report.append("Code: ").append(code).append(", Name: ").append(name).append("\n");
             }
+
             resp.setContentType("text/plain");
             resp.setStatus(200);
-            writer.write(report);
+            writer.write(report.toString());
             writer.flush();
             writer.close();
         } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
