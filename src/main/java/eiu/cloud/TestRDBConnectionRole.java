@@ -1,4 +1,4 @@
-package cloudcomputing;
+package eiu.cloud;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class TestRDBConnectionRole extends HttpServlet{
 	    );
 
 	    try {
-	      Connection connection = RDSConnection.getDBConnectionUsingIam();
+	      Connection connection = rds_connect.getDBConnectionUsingIam();
 	      //verify the connection is successful
 	        Statement stmt= connection.createStatement();
 	        ResultSet rs=stmt.executeQuery("SELECT 'Success!' FROM DUAL;");
