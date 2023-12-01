@@ -18,9 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/count" })
 public class Counting extends HttpServlet {
-    private final static String JDBC_URL = "jdbc:mysql://cloudcomp.cxevftgvdyfx.ap-southeast-1.rds.amazonaws.com:3306/cloudcomp1011";
-    private final static String DB_USER = "admin";
-    private final static String DB_PASSWORD = "Syhuy1998";
+	/*
+	 * private final static String JDBC_URL =
+	 * "jdbc:mysql://cloudcomp.cxevftgvdyfx.ap-southeast-1.rds.amazonaws.com:3306/cloudcomp1011";
+	 * private final static String DB_USER = "admin"; private final static String
+	 * DB_PASSWORD = "Syhuy1998";
+	 */
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -28,13 +31,7 @@ public class Counting extends HttpServlet {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream(), "UTF-8"));
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection mySQLClient = DriverManager.getConnection(
-                    JDBC_URL,
-                    DB_USER,
-                    DB_PASSWORD
-            );
-
+            Connection mySQLClient = rds_connect.getDBConnectionUsingIam();
             String query = "SELECT code, name FROM course"; // Update the query to select both columns
             PreparedStatement st = mySQLClient.prepareStatement(query);
             ResultSet rs = st.executeQuery();
@@ -56,7 +53,10 @@ public class Counting extends HttpServlet {
             writer.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
 

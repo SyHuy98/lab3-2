@@ -71,7 +71,7 @@ public class rds_connect {
 	 * @return
 	 * @throws Exception
 	 */
-	private static Connection getDBConnectionUsingIam() throws Exception {
+	public static Connection getDBConnectionUsingIam() throws Exception {
 		setSslProperties();
 		return DriverManager.getConnection(JDBC_URL, setMySqlConnectionProperties());
 	}
