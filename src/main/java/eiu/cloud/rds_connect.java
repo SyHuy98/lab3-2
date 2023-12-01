@@ -34,7 +34,7 @@ public class rds_connect {
 	private static final int RDS_INSTANCE_PORT = 3306;
 	private static final String REGION_NAME = "ap-southeast-1";
 	private static final String DB_USER = "huy";
-	private static final String JDBC_URL = "jdbc:mysql://" + RDS_INSTANCE_HOSTNAME + ":" + RDS_INSTANCE_PORT;
+	private static final String JDBC_URL = "jdbc:mysql://" + RDS_INSTANCE_HOSTNAME + ":" + RDS_INSTANCE_PORT + "/cloudcomp1011";
 
 	private static final String SSL_CERTIFICATE = "ap-southeast-1-bundle.pem";
 
