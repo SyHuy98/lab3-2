@@ -23,9 +23,9 @@ import com.amazonaws.services.rds.auth.RdsIamAuthTokenGenerator;
 
 public class RDSConnectionRole {
 	 //&AWS; Credentials of the IAM user with policy enabling IAM Database Authenticated access to the db by the db user.
-    private static final DefaultAWSCredentialsProviderChain creds = new DefaultAWSCredentialsProviderChain();
-    private static final String AWS_ACCESS_KEY = creds.getCredentials().getAWSAccessKeyId();
-    private static final String AWS_SECRET_KEY = creds.getCredentials().getAWSSecretKey();
+    //private static final DefaultAWSCredentialsProviderChain creds = new DefaultAWSCredentialsProviderChain();
+    //private static final String AWS_ACCESS_KEY = creds.getCredentials().getAWSAccessKeyId();
+    //private static final String AWS_SECRET_KEY = creds.getCredentials().getAWSSecretKey();
 
     //Configuration parameters for the generation of the IAM Database Authentication token
     private static final String RDS_INSTANCE_HOSTNAME = "cloudcomp.cxevftgvdyfx.ap-southeast-1.rds.amazonaws.com";
