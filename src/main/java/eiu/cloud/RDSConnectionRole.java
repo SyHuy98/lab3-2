@@ -44,7 +44,7 @@ public class RDSConnectionRole {
 
     public static void main(String[] args) throws Exception {
         //get the connection
-        Connection connection = getDBConnectionUsingIam();
+        Connection connection = getDBConnectionUsingIamRole();
 
         //verify the connection is successful
         Statement stmt= connection.createStatement();
@@ -67,7 +67,7 @@ public class RDSConnectionRole {
      * @return
      * @throws Exception
      */
-    public static Connection getDBConnectionUsingIam() throws Exception {
+    public static Connection getDBConnectionUsingIamRole() throws Exception {
         setSslProperties();
         return DriverManager.getConnection(JDBC_URL, setMySqlConnectionPropertiesRole());
     }

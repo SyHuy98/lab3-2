@@ -29,7 +29,7 @@ public class TestRDBConnectionRole extends HttpServlet{
 	    );
 
 	    try {
-	      Connection connection = rds_connect.getDBConnectionUsingIam();
+	      Connection connection = RDSConnectionRole.getDBConnectionUsingIamRole();
 	      //verify the connection is successful
 	        Statement stmt= connection.createStatement();
 	        ResultSet rs=stmt.executeQuery("SELECT 'Success!' FROM DUAL;");
