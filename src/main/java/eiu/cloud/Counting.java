@@ -31,7 +31,7 @@ public class Counting extends HttpServlet {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream(), "UTF-8"));
 
         try {
-            Connection mySQLClient = rds_connect.getDBConnectionUsingIam();
+            Connection mySQLClient = RDSConnectionRole.getDBConnectionUsingIamRole();
             String query = "SELECT code, name FROM course"; // Update the query to select both columns
             PreparedStatement st = mySQLClient.prepareStatement(query);
             ResultSet rs = st.executeQuery();
