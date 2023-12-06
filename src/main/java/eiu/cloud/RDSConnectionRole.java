@@ -69,7 +69,7 @@ public class RDSConnectionRole {
      */
     public static Connection getDBConnectionUsingIamRole() throws Exception {
         setSslProperties();
-        Class.forName("com.mysql.cj.jdbc.Driver");
+       // Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(JDBC_URL, setMySqlConnectionPropertiesRole());
     }
 
