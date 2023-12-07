@@ -52,10 +52,13 @@ public class Counting extends HttpServlet {
             writer.flush();
             writer.close();
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            writer.write(e.toString());
+            writer.flush();
+            writer.close();
         } catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	 writer.write(e.toString());
+             writer.flush();
+             writer.close();
 		}
     }
 }

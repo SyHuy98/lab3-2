@@ -36,7 +36,7 @@ public class rds_connect {
 	private static final String DB_USER = "huy";
 	private static final String JDBC_URL = "jdbc:mysql://" + RDS_INSTANCE_HOSTNAME + ":" + RDS_INSTANCE_PORT + "/cloudcomp1011";
 
-	private static final String SSL_CERTIFICATE = "ap-southeast-1-bundle.pem";
+	private static final String SSL_CERTIFICATE = "C:\\Users\\Syhuy98\\lab3-2\\ap-southeast-1-bundle.pem";
 
 	private static final String KEY_STORE_TYPE = "JKS";
 	private static final String KEY_STORE_PROVIDER = "SUN";

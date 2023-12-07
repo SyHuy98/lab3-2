@@ -32,7 +32,7 @@ public class RDSConnectionRole {
     private static final int RDS_INSTANCE_PORT = 3306;
     private static final String REGION_NAME = "ap-southeast-1";
     private static final String DB_USER = "huy";
-    private static final String JDBC_URL = "jdbc:mysql://" + RDS_INSTANCE_HOSTNAME + ":" + RDS_INSTANCE_PORT ;
+    private static final String JDBC_URL = "jdbc:mysql://" + RDS_INSTANCE_HOSTNAME + ":" + RDS_INSTANCE_PORT +"/cloudcomp1011" ;
 
     private static final String SSL_CERTIFICATE = "ap-southeast-1-bundle.pem";
 
@@ -69,7 +69,6 @@ public class RDSConnectionRole {
      */
     public static Connection getDBConnectionUsingIamRole() throws Exception {
         setSslProperties();
-       // Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(JDBC_URL, setMySqlConnectionPropertiesRole());
     }
 
@@ -93,11 +92,19 @@ public class RDSConnectionRole {
      * btusi123.cmz7kenwo2ye.rds.cn-north-1.amazonaws.com.cn:3306/?Action=connect&DBUser=iamtestuser&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20171003T010726Z&X-Amz-SignedHeaders=host&X-Amz-Expires=899&X-Amz-Credential=AKIAPFXHGVDI5RNFO4AQ%2F20171003%2Fcn-north-1%2Frds-db%2Faws4_request&X-Amz-Signature=f9f45ef96c1f770cdad11a53e33ffa4c3730bc03fdee820cfdf1322eed15483b
      * @return
      */
-    static String generateAuthTokenRole() {
-        RdsIamAuthTokenGenerator generator = RdsIamAuthTokenGenerator.builder().credentials(new InstanceProfileCredentialsProvider(false)).region(REGION_NAME).build();
-        return generator.getAuthToken(GetIamAuthTokenRequest.builder()
-                .hostname(RDS_INSTANCE_HOSTNAME).port(RDS_INSTANCE_PORT).userName(DB_USER).build());
-    }
+	static String generateAuthTokenRole() {
+
+		RdsIamAuthTokenGenerator generator = RdsIamAuthTokenGenerator.builder()
+
+				.credentials(new
+
+				InstanceProfileCredentialsProvider(false)).region(REGION_NAME).build();
+
+		return generator.getAuthToken(GetIamAuthTokenRequest.builder().hostname(RDS_INSTANCE_HOSTNAME)
+
+				.port(RDS_INSTANCE_PORT).userName(DB_USER).build());
+
+	}
 
     /**
      * This method sets the SSL properties which specify the key store file, its type and password:
